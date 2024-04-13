@@ -11,7 +11,7 @@ function NameEntryForm({ onNameSubmit }) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="name-entry-form" onSubmit={handleSubmit}>
             <input
                 type="text"
                 placeholder="Enter your name"

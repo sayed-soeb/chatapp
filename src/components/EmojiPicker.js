@@ -1,7 +1,7 @@
 import React from 'react';
 
 function EmojiPicker({ onSelect }) {
-    const emojis = ['😊', '😂', '😍', '😎', '🥳', '🎉', '❤️', '👍', '👏', '🙌', '🤗'];
+    const emojis = ['😊', '😂', '😍', '😎', '🥳', '🎉', '❤️', '👍', '👏', '🙌', '🤗', '😡', '😭', '😄', '😆'];
 
     return (
         <div className="emoji-picker">

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import EmojiPicker from './EmojiPicker'; // Import the EmojiPicker component
+import EmojiPicker from './EmojiPicker';
 
 function SendMessageForm({ sendMessage }) {
     const [message, setMessage] = useState('');
@@ -8,7 +8,7 @@ function SendMessageForm({ sendMessage }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         sendMessage(message);
-        setMessage('');
+        setMessage(''); // Clear message after sending
     };
 
     const handleEmojiSelect = (emoji) => {
@@ -23,10 +23,12 @@ function SendMessageForm({ sendMessage }) {
                 value={message}
                 onChange={e => setMessage(e.target.value)}
             ></textarea>
-            {showEmojiPicker && <EmojiPicker onSelect={handleEmojiSelect} />} {/* Render EmojiPicker if showEmojiPicker is true */}
-            <button type="button" className="emoji-picker-button" onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
-                😊
-            </button>
+            <div className="emoji-picker-container">
+                {showEmojiPicker && <EmojiPicker onSelect={handleEmojiSelect} />}
+                <button type="button" className="emoji-picker-button" onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
+                    😊
+                </button>
+            </div>
             <button type="submit">Send</button>
         </form>
     );

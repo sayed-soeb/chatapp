@@ -29,12 +29,12 @@ main {
     height: 80vh;
     border: 1px solid #ccc;
     border-radius: 10px;
-    overflow-y: scroll;
+    overflow-y: auto;
+    position: relative; /* Add position relative for absolute positioning */
 }
 
 .message-container {
     padding: 1rem;
-    overflow-y: auto;
 }
 
 .message {
@@ -48,12 +48,16 @@ main {
     margin: 0;
 }
 
-.message-form {
+.send-message-form {
     display: flex;
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    align-items: center;
     padding: 1rem;
 }
 
-.message-input {
+.send-message-form textarea {
     flex: 1;
     padding: 0.5rem;
     border: 1px solid #ccc;
@@ -61,22 +65,130 @@ main {
     resize: none;
 }
 
-.emoji-picker {
-    width: 30px;
-    margin-left: 10px;
-    cursor: pointer;
+.emoji-picker-container {
+    position: relative;
 }
 
-.send-button {
+.emoji-picker {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+}
+
+.emoji-picker span {
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.emoji-picker-button {
+    margin-left: 10px;
+    cursor: pointer;
+    background-color: #128C7E;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+
+.emoji-picker-button:hover {
+    background-color: #075E54;
+}
+
+button[type="submit"] {
+    margin-left: 10px;
     padding: 0.5rem 1rem;
     border: none;
     background-color: #128C7E;
     color: #fff;
     border-radius: 5px;
-    margin-left: 10px;
     cursor: pointer;
 }
 
-.send-button:hover {
+button[type="submit"]:hover {
     background-color: #075E54;
+}
+
+/* src/styles/styles.css */
+
+.name-entry-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.name-entry-form input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.name-entry-form button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #128C7E;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.name-entry-form button:hover {
+    background-color: #075E54;
+}
+
+
+/* src/styles/styles.css */
+
+/* Emoji Picker */
+.emoji-picker {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    max-height: 160px; /* Height for 4 rows of emojis */
+    overflow-y: auto; /* Enable scrolling if emojis exceed max-height */
+}
+
+.emoji-picker span {
+    cursor: pointer;
+    font-size: 1.2em;
+    margin: 5px;
+}
+
+
+
+.emoji-picker-button {
+    margin-left: 10px;
+    cursor: pointer;
+    background-color: #128C7E;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+
+.emoji-picker-button:hover {
+    background-color: #075E54;
+}
+
+@media (max-width: 768px) {
+    .chat-room {
+        height: 90vh; 
+        border: none;
+    }
 }
