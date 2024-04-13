@@ -13,7 +13,7 @@ function ChatRoom() {
 
     useEffect(() => {
         // Fetch initial messages from server
-        axios.get('/api/messages')
+        axios.get('http://localhost:5000/api/messages')
             .then(response => setMessages(response.data))
             .catch(error => console.error(error));
 
