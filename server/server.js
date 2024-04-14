@@ -59,6 +59,22 @@ io.on('connection', (socket) => {
         }
     });
 
+    socket.on('deleteMessage', async (deletedMessageId) => {
+        try {
+            // Delete the message from the database
+            await Message.findByIdAndDelete(deletedMessageId);
+            // Broadcast the message deletion event to all connected clients
+            io.emit('messageDeleted', deletedMessageId);
+        } catch (error) {
+            console.error('Error deleting message:', error);
+        }
+    });
+
+    socket.on('likeUpdated', (likeCount) => {
+        // Broadcast the updated like count to all clients
+        io.emit('likeUpdated', likeCount);
+    });
+
     socket.on('disconnect', () => {
         console.log('Client disconnected');
     });
