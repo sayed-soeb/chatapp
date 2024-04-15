@@ -17,6 +17,8 @@ function SendMessageForm({ sendMessage }) {
     };
 
     return (
+        <>
+        <div>
         <form className="send-message-form" onSubmit={handleSubmit}>
             <textarea
                 placeholder="Type your message..."
@@ -31,6 +33,8 @@ function SendMessageForm({ sendMessage }) {
             </div>
             <button type="submit">Send</button>
         </form>
+        </div>
+        </>
     );
 }
 

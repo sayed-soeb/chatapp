@@ -73,7 +73,15 @@ const Message = ({ message, setMessages }) => {
 
     return (
         <div className="message">
-            <p><strong>{message.username}</strong>: {message.message}</p>
+            <div className="message-info">
+                <div className="user-circle" style={{ backgroundColor: getUserColor(message.username) }}>{message.username.charAt(0)}</div>
+                <div className='detail-users'>
+                <p className="user-name">{message.username}</p>
+                <p className="message-time">{formatTime(message.createdAt)}</p>
+                </div>
+            </div>
+            <div className='message-tab'>
+            <p className="message-content">{message.message}</p>
             <div className="message-actions">
                 <button onClick={toggleLike} className={`like-btn ${liked ? 'liked' : ''}`}>
                     {liked ? <span role="img" aria-label="heart">❤️</span> : <span role="img" aria-label="heart">🤍</span>} {likeCount}
@@ -82,8 +90,38 @@ const Message = ({ message, setMessages }) => {
                     <span role="img" aria-label="trash">🗑️</span>
                 </button>
             </div>
+            </div>
         </div>
     );
 };
+
+// Function to generate random color for user circle
+const getUserColor = (username) => {
+    // Generate a hash code from the username
+    let hash = 0;
+    for (let i = 0; i < username.length; i++) {
+        hash = username.charCodeAt(i) + ((hash << 5) - hash);
+    }
+
+    // Convert the hash code to a hexadecimal color
+    let color = '#';
+    for (let i = 0; i < 3; i++) {
+        const value = (hash >> (i * 8)) & 0xFF;
+        color += ('00' + value.toString(16)).substr(-2);
+    }
+
+    return color;
+};
+const formatTime = (createdAt) => {
+    const messageTime = new Date(createdAt);
+    const hours = messageTime.getHours();
+    const minutes = messageTime.getMinutes();
+  
+    // Add leading zero to minutes if less than 10
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+  
+    // Format time as "hr:min"
+    return `${hours}:${formattedMinutes}`;
+  };
 
 export default Message;
