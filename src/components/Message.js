@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import io from 'socket.io-client';
 import axios from 'axios';
 
-const socket = io('http://localhost:5000');
+const socket = io('https://chatapp-by-sayed.onrender.com');
 
 const Message = ({ message, setMessages }) => {
     const [liked, setLiked] = useState(false);
@@ -43,13 +43,13 @@ const Message = ({ message, setMessages }) => {
     const toggleLike = async () => {
         try {
             if (!liked) {
-                const response = await axios.post(`http://localhost:5000/api/messages/${message._id}/like`);
+                const response = await axios.post(`https://chatapp-by-sayed.onrender.com/api/messages/${message._id}/like`);
                 const updatedLikeCount = response.data.likes;
                 setLikes(updatedLikeCount);
                 socket.emit('likeUpdated', updatedLikeCount);
 
             } else {
-                const response = await axios.delete(`http://localhost:5000/api/messages/${message._id}/like`);
+                const response = await axios.delete(`https://chatapp-by-sayed.onrender.com/api/messages/${message._id}/like`);
                 const updatedLikeCount = response.data.likes;
                 setLikes(updatedLikeCount);
                 socket.emit('likeUpdated', updatedLikeCount);
@@ -65,7 +65,7 @@ const Message = ({ message, setMessages }) => {
 
     const deleteMessage = async () => {
         try {
-            await axios.delete(`http://localhost:5000/api/messages/${message._id}`);
+            await axios.delete(`https://chatapp-by-sayed.onrender.com/api/messages/${message._id}`);
             // Emit message deletion event to the server
             socket.emit('deleteMessage', message._id);
             // Mark the message as deleted locally

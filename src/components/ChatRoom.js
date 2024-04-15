@@ -5,7 +5,7 @@ import Message from './Message';
 import SendMessageForm from './SendMessageForm';
 import NameEntryForm from './NameEntryForm'; // Import the NameEntryForm component
 
-const socket = io('http://localhost:5000');
+const socket = io('https://chatapp-by-sayed.onrender.com');
 
 function ChatRoom() {
     const [messages, setMessages] = useState([]);
@@ -13,7 +13,7 @@ function ChatRoom() {
 
     useEffect(() => {
         // Fetch initial messages from server
-        axios.get('http://localhost:5000/api/messages')
+        axios.get('https://chatapp-by-sayed.onrender.com/api/messages')
             .then(response => setMessages(response.data))
             .catch(error => console.error(error));
 
