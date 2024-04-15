@@ -31,7 +31,7 @@ const server = app.listen(PORT, () => console.log(`Server running on port ${PORT
 // Initialize Socket.IO and attach it to the HTTP server
 const io = socket(server, {
     cors: {
-        origin: "https://chatapp-by-sayed.netlify.app/",
+        origin: "https://chatapp-by-sayed.netlify.app",
         methods: ["GET", "POST"]
     }
 });
